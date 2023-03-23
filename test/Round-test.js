@@ -25,6 +25,7 @@ describe('Round', function () {
 
     it('should be an instance of Round', function () {
         expect(round).to.be.an.instanceOf(Round);
+
     });
 
     it('should be the first Card in the Deck at the start of the Round', function () {

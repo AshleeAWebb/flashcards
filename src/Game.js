@@ -1,23 +1,36 @@
-const Card = require('../src/Card');
-const Deck = require('../src/Deck');
-const Round = require('../src/Round');
+const data = require('./data')
 const prototypeQuestions = data.prototypeData;
 const util = require('./util');
-const data = require('./data')
+const Card = require('../src/Card')
+const Deck = require('../src/Deck')
+const Round = require('../src/Round')
 
 class Game {
   constructor() {
     this.currentRound = null;
+  } 
+
+  createDeck(cards) {
+    return new Deck(cards);
   }
-start() {
-  const cards = prototypeData.map(cardData => new Card(cardData.id, cardData.question, cardData.answers, cardData.correctAnswer));
 
-  const deck = new Deck(cards);
-  this.currentRound = new Round(deck);
-  this.printMessage(deck, this.currentRound);
-  this.printQuestion(this.currentRound);
+  createRound(deck) {
+    return new Round(deck);
+  }
 
-}
+  setCurrentRound(round) {
+    this.currentRound = round;
+  }
+
+  start() {
+    const cards = prototypeQuestions.map((card) => new Card(card.id, card.question, card.answers, card.correctAnswer));
+    const deck = this.createDeck(cards);
+    const round = this.createRound(deck);
+    this.setCurrentRound(round);
+    this.printMessage(deck, round);
+    this.printQuestion(round);
+  }
+
   printMessage(deck, round) {
     console.log(`Welcome to FlashCards! You are playing with ${deck.countCards()} cards.
 -----------------------------------------------------------------------`)
@@ -27,6 +40,5 @@ start() {
       util.main(round);
   }
 }
-
 
 module.exports = Game;
