@@ -25,32 +25,32 @@ describe ('Turn', function () {
     });
 
     it('should store an object for current card', function() {
-        expect(turn.card).to.deep.equal(card);
+        expect(turn.card).to.equal(card);
     });
 
     it('should return user\'s guess', function () {
-        expect(turn.returnGuess()).to.deep.equal('Random answer 1');
+        expect(turn.returnGuess()).to.equal('Random answer 1');
     });
 
     it('should return a card', function() { 
-        expect(turn.returnCard()).to.deep.equal(card);
+        expect(turn.returnCard()).to.equal(card);
     });
 
     it('should evaluate if user\'s guess is correct', function() {
-        expect(turn.evaluateGuess()).to.deep.equal(true);
+        expect(turn.evaluateGuess()).to.equal(true);
     });
 
     it('should evaluate if user\'s guess is incorrect', function() {
         const incorrectTurn = new Turn('Random answer 2', card);
-        expect(incorrectTurn.evaluateGuess()).to.deep.equal(false);
+        expect(incorrectTurn.evaluateGuess()).to.equal(false);
     });
 
     it('should give feedback based on user\'s guess', function() {
-        expect(turn.giveFeedback()).to.deep.equal('correct!');
+        expect(turn.giveFeedback()).to.equal('correct!');
     });
 
     it('should give feedback based on user\'s guess', function() {
         const incorrectTurn = new Turn('Random answer 2', card);
-        expect(incorrectTurn.giveFeedback()).to.deep.equal('incorrect!');
+        expect(incorrectTurn.giveFeedback()).to.equal('incorrect!');
     });
 });
