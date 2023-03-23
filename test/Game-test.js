@@ -44,7 +44,8 @@ describe('Game', () => {
     });
 
     it('should be an instance of Round', () => {
-      game.start()
+      const round = game.createRound(deck);
+      game.setCurrentRound(round);
       expect(game.currentRound).to.be.an.instanceOf(Round);
       expect(round.deck).to.deep.equal(deck)
     });
