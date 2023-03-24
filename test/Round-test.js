@@ -7,7 +7,7 @@ const Deck = require('../src/Deck');
 const Turn = require('../src/Turn');
 
 
-describe('Round', function () {
+describe('Round', () => {
     let round;
     const card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     const card2 = new Card(14, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
@@ -19,49 +19,49 @@ describe('Round', function () {
         round = new Round(deck);
     });
 
-    it('should be a function', function () {
+    it('should be a function', () => {
         expect(Round).to.be.a('function');
     });
 
-    it('should be an instance of Round', function () {
+    it('should be an instance of Round', () => {
         expect(round).to.be.an.instanceOf(Round);
 
     });
 
-    it('should be the first Card in the Deck at the start of the Round', function () {
+    it('should be the first Card in the Deck at the start of the Round', () => {
         expect(round.returnCurrentCard()).to.equal(card1);
     });
 
-    it('should store incorrect guesses in an array', function () {
+    it('should store incorrect guesses in an array', () => {
         round.takeTurn('pug');
         expect(round.incorrectGuesses[0]).to.equal(1);
     });
 
-    it('should evaluate guesses and give a response', function () {
+    it('should evaluate guesses and give a response', () => {
         expect(round.takeTurn('sea otter')).to.equal('correct!');
         expect(round.takeTurn('pug')).to.equal('incorrect!');
     });
 
-    it('should evaluate guesses and give a response of next card in array', function () {
+    it('should evaluate guesses and give a response of next card in array', () => {
         expect(round.takeTurn('gallbladder')).to.equal('correct!');
         expect(round.takeTurn('spleen')).to.equal('incorrect!');
     });
 
-    it('should update turn count', function () {
+    it('should update turn count', () => {
         round.takeTurn('sea otter');
         expect(round.turns).to.equal(1);
         round.takeTurn('spleen');
         expect(round.turns).to.equal(2);
     });
 
-    it('should update turn count', function () {
+    it('should update turn count', () => {
         round.takeTurn(round);
         round.takeTurn(round);
         round.takeTurn(round);
         expect(round.turns).to.equal(3);
     });
 
-    it('should calculate and return the percentage of correct guesses', function () {
+    it('should calculate and return the percentage of correct guesses', () => {
         const newDeck = new Deck([card1, card2, card3]);
         const round = new Round(newDeck);
         round.takeTurn('sea otter');
@@ -70,7 +70,7 @@ describe('Round', function () {
         expect(round.calculatePercentCorrect()).to.equal(33);
     });
 
-    it('should print to the console a round over pharse with the percentage correct', function () {
+    it('should print to the console a round over pharse with the percentage correct', () => {
         const newDeck = new Deck([card1, card2, card3]);
         const round = new Round(newDeck);
         round.takeTurn('sea otter');

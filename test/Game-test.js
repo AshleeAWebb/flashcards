@@ -1,9 +1,9 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Card = require('../src/Card')
-const Deck = require('../src/Deck')
-const Round = require('../src/Round')
-const Game = require('../src/Game')
+const Card = require('../src/Card');
+const Deck = require('../src/Deck');
+const Round = require('../src/Round');
+const Game = require('../src/Game');
 
 describe('Game', () => {
     let game;
@@ -49,4 +49,33 @@ describe('Game', () => {
       expect(game.currentRound).to.be.an.instanceOf(Round);
       expect(round.deck).to.deep.equal(deck)
     });
+
+  it('should be a function', () => {
+    expect(Game).to.be.a('function');
   });
+
+  it('should be an instance of game', () => {
+    expect(game).to.be.an.instanceOf(Game);
+  });
+
+  it('should keep track of the current round', () => {
+    expect(game.currentRound).to.equal(null);
+  });
+
+  it('should be an instance of Deck', () => {
+    expect(deck).to.be.an.instanceOf(Deck);
+  });
+
+  it('should create an array of cards', () => {
+    expect(deck.cards.length).to.equal(3);
+    expect(deck.cards[0]).to.deep.equal(card1);
+    expect(deck.cards[1]).to.deep.equal(card2);
+    expect(deck.cards[2]).to.deep.equal(card3);
+  });
+
+  it('should be an instance of Round', () => {
+    game.start();
+    expect(game.currentRound).to.be.an.instanceOf(Round);
+    expect(round.deck).to.deep.equal(deck);
+  });
+});
